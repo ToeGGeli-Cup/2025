@@ -55,13 +55,10 @@
         }
     </style>
     <script>
-        // Sofortiges Neuladen, wenn sich die Version geändert hat
-        const currentVersion = "v1.0.1740918631"; // Zeitstempel als Version
-        const storedVersion = localStorage.getItem("site_version");
-
-        if (storedVersion !== currentVersion) {
-            localStorage.setItem("site_version", currentVersion);
-            window.location.reload(true); // Erzwungenes Neuladen
+        // Cache-Busting durch automatisches Anhängen eines Versionsparameters an die URL
+        const versionParam = "v=" + new Date().getTime();
+        if (!window.location.href.includes(versionParam)) {
+            window.location.replace(window.location.href.split("?")[0] + "?" + versionParam);
         }
     </script>
 </head>
@@ -70,7 +67,7 @@
 
     <div class="news-container">
         <h2>News</h2>
-        <p>Hallo zusammen und herzlich willkommen beim TöGGeli-Cup 2025!</p>
+        <p>Hallo zusammen und herzlich willkommen beim TöGGeli-Cup 2025! Test 8</p>
     </div>
 
     <h2>Teams</h2>
