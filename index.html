@@ -55,13 +55,13 @@
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch(window.location.href, { cache: "reload" })
-                .then(response => response.text())
-                .then(html => {
-                    console.log("Seite aktualisiert.");
-                });
-        });
+        // Automatisches Neuladen bei neuer Version
+        const currentVersion = "v1.0.1740918132"; // Zeitstempel als Version
+
+        if (localStorage.getItem("site_version") !== currentVersion) {
+            localStorage.setItem("site_version", currentVersion);
+            location.reload(true); // Erzwingt ein vollständiges Neuladen
+        }
     </script>
 </head>
 <body>
@@ -69,7 +69,7 @@
 
     <div class="news-container">
         <h2>News</h2>
-        <p>Hallo zusammen und herzlich willkommen beim TöGGeli-Cup 2025! Test 5</p>
+        <p>Hallo zusammen und herzlich willkommen beim TöGGeli-Cup 2025! Test 6</p>
     </div>
 
     <h2>Teams</h2>
