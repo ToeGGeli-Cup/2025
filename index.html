@@ -54,15 +54,20 @@
             background-color: #D81B60;
         }
     </style>
+    <script>
+        var currentUrl = window.location.href;
+        var cacheBuster = new Date().getTime(); // Zeitstempel als Cache-Bypass
+        if (!currentUrl.includes("nocache")) {
+            window.location.href = currentUrl + "?nocache=" + cacheBuster;
+        }
+    </script>
 </head>
 <body>
     <h1>TöGGeli-Cup 2025</h1>
 
     <div class="news-container">
         <h2>News</h2>
-        <p>Hallo zusammen
-Vielleicht klappt es jetzt! Endlich!!!!
-Jetz gseht's sogar s'Poneli!!!</p>
+        <p>Hallo zusammen und herzlich willkommen beim TöGGeli-Cup 2025!</p>
     </div>
 
     <h2>Teams</h2>
@@ -81,7 +86,7 @@ Jetz gseht's sogar s'Poneli!!!</p>
             <tr><th>Team 1</th><th>Resultat</th><th>Team 2</th></tr>
         </thead>
         <tbody>
-            <tr><td>LB Strikers</td><td>8 : 10</td><td>GGoldies</td></tr><tr><td>LB Strikers</td><td>7 : 10</td><td>Team Watos</td></tr><tr><td>LB Strikers</td><td>10 : 5</td><td>Inter Madrid</td></tr><tr><td>GGoldies</td><td>10 : 6</td><td>Team Watos</td></tr><tr><td>GGoldies</td><td>10 : 5</td><td>Inter Madrid</td></tr>
+            <tr><td>LB Strikers</td><td>8 : 10</td><td>GGoldies</td></tr><tr><td>LB Strikers</td><td>7 : 10</td><td>Team Watos</td></tr><tr><td>LB Strikers</td><td>10 : 5</td><td>Inter Madrid</td></tr><tr><td>GGoldies</td><td>10 : 6</td><td>Team Watos</td></tr><tr><td>GGoldies</td><td>10 : 5</td><td>Inter Madrid</td></tr><tr><td>Team Watos</td><td>10 : 8</td><td>Inter Madrid</td></tr>
         </tbody>
     </table>
 
@@ -91,7 +96,7 @@ Jetz gseht's sogar s'Poneli!!!</p>
             <tr><th>Team 1</th><th>Team 2</th></tr>
         </thead>
         <tbody>
-            <tr><td>Team Watos</td><td>Inter Madrid</td></tr>
+            
         </tbody>
     </table>
 
@@ -101,7 +106,7 @@ Jetz gseht's sogar s'Poneli!!!</p>
             <tr><th>Team</th><th>Spiele</th><th>Punkte</th><th>Tore</th><th>Gegentore</th><th>Tordifferenz</th></tr>
         </thead>
         <tbody>
-            <tr><td>GGoldies</td><td>3</td><td>3</td><td>30</td><td>19</td><td>11</td></tr><tr><td>LB Strikers</td><td>3</td><td>1</td><td>25</td><td>25</td><td>0</td></tr><tr><td>Team Watos</td><td>2</td><td>1</td><td>16</td><td>17</td><td>-1</td></tr><tr><td>Inter Madrid</td><td>2</td><td>0</td><td>10</td><td>20</td><td>-10</td></tr>
+            <tr><td>GGoldies</td><td>3</td><td>3</td><td>30</td><td>19</td><td>11</td></tr><tr><td>Team Watos</td><td>3</td><td>2</td><td>26</td><td>25</td><td>1</td></tr><tr><td>LB Strikers</td><td>3</td><td>1</td><td>25</td><td>25</td><td>0</td></tr><tr><td>Inter Madrid</td><td>3</td><td>0</td><td>18</td><td>30</td><td>-12</td></tr>
         </tbody>
     </table>
 </body>
