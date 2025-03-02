@@ -55,11 +55,13 @@
         }
     </style>
     <script>
-        var currentUrl = window.location.href;
-        var cacheBuster = new Date().getTime(); // Zeitstempel als Cache-Bypass
-        if (!currentUrl.includes("nocache")) {
-            window.location.href = currentUrl + "?nocache=" + cacheBuster;
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch(window.location.href, { cache: "reload" })
+                .then(response => response.text())
+                .then(html => {
+                    console.log("Seite aktualisiert.");
+                });
+        });
     </script>
 </head>
 <body>
