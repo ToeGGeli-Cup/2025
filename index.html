@@ -55,12 +55,13 @@
         }
     </style>
     <script>
-        // Automatisches Neuladen bei neuer Version
-        const currentVersion = "v1.0.1740918132"; // Zeitstempel als Version
+        // Sofortiges Neuladen, wenn sich die Version geändert hat
+        const currentVersion = "v1.0.1740918631"; // Zeitstempel als Version
+        const storedVersion = localStorage.getItem("site_version");
 
-        if (localStorage.getItem("site_version") !== currentVersion) {
+        if (storedVersion !== currentVersion) {
             localStorage.setItem("site_version", currentVersion);
-            location.reload(true); // Erzwingt ein vollständiges Neuladen
+            window.location.reload(true); // Erzwungenes Neuladen
         }
     </script>
 </head>
@@ -69,7 +70,7 @@
 
     <div class="news-container">
         <h2>News</h2>
-        <p>Hallo zusammen und herzlich willkommen beim TöGGeli-Cup 2025! Test 7</p>
+        <p>Hallo zusammen und herzlich willkommen beim TöGGeli-Cup 2025!</p>
     </div>
 
     <h2>Teams</h2>
