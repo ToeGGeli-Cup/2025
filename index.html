@@ -18,8 +18,9 @@
         h1, h2 {
             font-weight: bold;
         }
-      .news-container {
-            width: 80%;
+        .news-container {
+            width: 100%;
+            max-width: none;
             margin: 20px auto;
             padding: 15px;
             background-color: #D81B60;
@@ -154,12 +155,10 @@
             loadSheet("Spiele", "ranking", sortRanking);
         }
 
-        // Automatische Aktualisierung bei jedem Öffnen der Website
         window.addEventListener("load", () => {
             loadAllData();
         });
 
-        // Regelmäßige Aktualisierung alle 30 Sekunden
         setInterval(loadAllData, 30000);
     </script>
 </body>
