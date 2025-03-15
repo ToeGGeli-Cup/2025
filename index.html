@@ -18,21 +18,27 @@
         h1, h2 {
             font-weight: bold;
         }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
         .news-container {
             width: 100%;
-            max-width: none;
-            margin: 20px auto;
-            padding: 15px;
             background-color: #D81B60;
             border-radius: 10px;
-            text-align: left; /* News-Texte bleiben linksbündig */
+            padding: 15px;
+            text-align: left;
         }
         .news-container h2 {
-            text-align: center; /* Überschrift "News" zentrieren */
+            text-align: center;
+        }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
         }
         table {
-            width: 80%;
-            margin: 10px auto;
+            width: 100%;
             border-collapse: collapse;
         }
         th, td {
@@ -40,44 +46,65 @@
             border: 1px solid black;
             background-color: white;
             color: black;
+            text-align: center;
         }
         th {
             background-color: #0059B2;
             color: white;
         }
+        @media screen and (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            h1, h2 {
+                font-size: 18px;
+            }
+            th, td {
+                padding: 5px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>TöGGeli-Cup 2025</h1>
+    
+    <div class="container">
+        <div class="news-container">
+            <h2>News</h2>
+            <div id="news"></div>
+        </div>
 
-    <div class="news-container">
-        <h2>News</h2>
-        <div id="news"></div>
+        <h2>Teams</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Teamname</th><th>Spieler:in 1</th><th>Spieler:in 2</th></tr>
+                </thead>
+                <tbody id="teams"></tbody>
+            </table>
+        </div>
+
+        <h2>Spiele</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Team 1</th><th>Tore Team 1</th><th>Team 2</th><th>Tore Team 2</th></tr>
+                </thead>
+                <tbody id="games"></tbody>
+            </table>
+        </div>
+
+        <h2>Rangliste</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Platz</th><th>Team</th><th>Punkte</th><th>Spiele</th><th>Tore</th><th>Gegentore</th><th>Tordifferenz</th></tr>
+                </thead>
+                <tbody id="ranking"></tbody>
+            </table>
+        </div>
     </div>
-
-    <h2>Teams</h2>
-    <table>
-        <thead>
-            <tr><th>Teamname</th><th>Spieler:in 1</th><th>Spieler:in 2</th></tr>
-        </thead>
-        <tbody id="teams"></tbody>
-    </table>
-
-    <h2>Spiele</h2>
-    <table>
-        <thead>
-            <tr><th>Team 1</th><th>Tore Team 1</th><th>Team 2</th><th>Tore Team 2</th></tr>
-        </thead>
-        <tbody id="games"></tbody>
-    </table>
-
-    <h2>Rangliste</h2>
-    <table>
-        <thead>
-            <tr><th>Platz</th><th>Team</th><th>Punkte</th><th>Spiele</th><th>Tore</th><th>Gegentore</th><th>Tordifferenz</th></tr>
-        </thead>
-        <tbody id="ranking"></tbody>
-    </table>
 
     <script>
         const sheetId = "1qUf-YbZCdAwf5aHhdMRa2yrrqn1WRTNeZhDOwTYTPgk";
