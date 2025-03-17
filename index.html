@@ -124,18 +124,77 @@
                 font-size: 12px;
             }
         }
+
+.burger-menu {
+    display: none;
+    background: #0059B2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Responsive: Burger-Menü nur auf kleinen Bildschirmen */
+@media screen and (max-width: 768px) {
+    .burger-menu {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px; /* Menü nach rechts verschoben */
+        z-index: 1100;
+    }
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        background-color: #D81B60;
+        position: absolute;
+        top: 50px;
+        right: 0; /* Menü öffnet sich rechts */
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .navbar-links.show {
+        display: flex;
+    }
+
+    .navbar-links a {
+        padding: 12px;
+        font-size: 16px;
+        border-top: 1px solid white;
+        color: white;
+        text-decoration: none;
+    }
+
+    .navbar-links a:hover {
+        background-color: #003D82;
+    }
+}
+
+        
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <div class="navbar">
-        <a href="#news">News</a>
-        <a href="#teams">Teams</a>
-        <a href="#open-games">Offene Spiele</a>
-        <a href="#finished-games">Resultate</a>
-        <a href="#ranking">Rangliste</a>
+<div class="navbar">
+    <button class="burger-menu" onclick="toggleMenu()">☰ Menü</button>
+    <div class="navbar-links">
+        <a href="#" onclick="scrollToTop()">Home</a>
+        <a href="#news" onclick="closeMenu()">News</a>
+        <a href="#teams" onclick="closeMenu()">Teams</a>
+        <a href="#open-games" onclick="closeMenu()">Offene Spiele</a>
+        <a href="#finished-games" onclick="closeMenu()">Resultate</a>
+        <a href="#ranking" onclick="closeMenu()">Rangliste</a>
     </div>
+</div>
+
+
 
     <h1>TöGGeli-Cup 2025</h1>
 
@@ -284,6 +343,24 @@
             setInterval(loadAllData, 30000);
         };
     </script>
+
+    <script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    closeMenu(); // Schließt das Menü nach dem Klick auf Home
+}
+
+function toggleMenu() {
+    const menu = document.querySelector(".navbar-links");
+    menu.classList.toggle("show");
+}
+
+function closeMenu() {
+    document.querySelector(".navbar-links").classList.remove("show");
+}
+
+</script>
+
 
 </body>
 </html>
