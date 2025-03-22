@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="max-age=0, no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>TöGGeli-Cup 2025</title>
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #5B3A2E; 
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding-top: 60px;
+        }
+        h1, h2 {
+            font-weight: bold;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #D81B60;
+            padding: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            z-index: 1000;
+        }
+        .navbar a {
+            background-color: #0059B2;
+            color: white;
+            padding: 10px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .navbar a:hover {
+            background-color: #003D82;
+        }
+
+        .tournament-logo {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 20px; /* Abgerundete Ecken */
+            width: 210px; /* Breite des Rahmens */
+            height: auto; /* Automatische Höhe */
+        }
+
+        .tournament-logo img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px; /* Leicht abgerundete Ecken für das Bild */
+        }
+
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding-top: 60px;
+        }
+        .section-container {
+            width: 100%;
+            background-color: #5B3A2E; /* Einheitliche Boxen für alle Abschnitte */
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-container h2 {
+            text-align: center;
+            color: white;
+        }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+            background-color: white;
+            color: black;
+            text-align: center;
+        }
+        th {
+            background-color: #0059B2;
+            color: white;
+        }
+        @media screen and (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            h1, h2 {
+                font-size: 18px;
+            }
+            .navbar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .navbar a {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+            th, td {
+                padding: 5px;
+                font-size: 12px;
+            }
+        }
+
+.burger-menu {
+    display: none;
+    background: #0059B2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    position: fixed; /* Fixiert das Menü */
+    top: 20px;
+    right: 10px;
+    z-index: 1100; /* Stellt sicher, dass es über allem bleibt */
+}
+
+/* Responsive: Burger-Menü nur auf kleinen Bildschirmen */
+@media screen and (max-width: 768px) {
+    .burger-menu {
+        display: block;
+    }
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        background-color: #D81B60;
+        position: fixed; /* Fixiert die Navbar beim Scrollen */
+        top: 50px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        border-radius: 0 0 10px 10px;
+        z-index: 1000; /* Höhere Priorität als andere Elemente */
+    }
+
+    .navbar-links.show {
+        display: flex;
+    }
+
+    .navbar-links a {
+        padding: 12px;
+        font-size: 16px;
+        border-top: 1px solid white;
+        color: white;
+        text-decoration: none;
+    }
+
+    .navbar-links a:hover {
+        background-color: #003D82;
+    }
+}
+
+/* 🕒 COUNTDOWN DESIGN */
+        .countdown-container {
+            background: #D81B60;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px auto;
+            text-align: center;
+            border-radius: 10px;
+            max-width: 400px;
+        }
+
+        /* 📊 FORTSCHRITTSBALKEN DESIGN */
+        .progress-container {
+            width: 80%;
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        #progress-fill {
+            height: 100%;
+            width: 0%;
+            background-color: #0059B2;
+            transition: width 0.5s ease-in-out;
+        }
+
+        #progress-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+
+      
+.rank-top {
+    background-color: #81c784 !important; /* satteres Grün */
+}
+
+.rank-good {
+    background-color: #c8e6c9 !important; /* bisheriges Top-Grün */
+}
+
+tr.rank-top td {
+    background-color: #81c784 !important; /* kräftigeres Grün für Platz 1 & 2 */
+    font-weight: bold;
+}
+
+tr.rank-good td {
+    background-color: #c8e6c9 !important; /* bisheriger Platz 1/2 Ton nun für 3/4 */
+}
+
+     
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <button class="burger-menu" onclick="toggleMenu()">☰ Menü</button>
+    <div class="navbar-links">
+        <a href="#" onclick="scrollToTop()">Home</a>
+        <a href="#news" onclick="closeMenu()">News</a>
+        <a href="#teams" onclick="closeMenu()">Teams</a>
+        <a href="#open-games" onclick="closeMenu()">Offene Spiele</a>
+        <a href="#finished-games" onclick="closeMenu()">Resultate</a>
+        <a href="#ranking" onclick="closeMenu()">Rangliste</a>
+        <a href="TC_2025_Turnierregeln.pdf" target="_blank" class="menu-item rules-link">Turnierregeln</a>
+
+    </div>
+</div>
+
+
+
+  
+    <div class="tournament-logo">
+        <img src="Logo.png" alt="TöGGeli-Cup 2025 Logo">
+    </div>
+
+ <!-- 🕒 Countdown -->
+    <div class="countdown-container">
+        <p id="countdown">Lade Countdown...</p>
+    </div>
+
+    <!-- 📊 Fortschrittsbalken -->
+    <div class="progress-container">
+        <h2>Gespielte Spiele der Vorrunde</h2>
+        <div class="progress-bar">
+            <div id="progress-fill"></div>
+        </div>
+        <p id="progress-text">Lade Daten...</p>
+    </div>
+    
+    <div class="container">
+        <div id="news" class="section-container">
+            <h2>News</h2>
+            <div id="news-content"></div>
+        </div>
+
+        <div id="teams" class="section-container">
+            <h2>Teams</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Teamname</th><th>Spieler:in 1</th><th>Spieler:in 2</th></tr>
+                    </thead>
+                    <tbody id="teams-content"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="open-games" class="section-container">
+            <h2>Offene Spiele</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Team 1</th><th>vs</th><th>Team 2</th></tr>
+                    </thead>
+                    <tbody id="open-games-content"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="finished-games" class="section-container">
+            <h2>Resultate</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Team 1</th><th>Tore Team 1</th><th>Team 2</th><th>Tore Team 2</th></tr>
+                    </thead>
+                    <tbody id="finished-games-content"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="ranking" class="section-container">
+            <h2>Rangliste</h2>
+            <div class="table-container">
+              <table class="ranking-table">
+                    <thead>
+                        <tr><th>Platz</th><th>Team</th><th>Punkte</th><th>Spiele</th><th>Tore</th><th>Gegentore</th><th>Tordifferenz</th></tr>
+                    </thead>
+                    <tbody id="ranking-content"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sheetId = "1qUf-YbZCdAwf5aHhdMRa2yrrqn1WRTNeZhDOwTYTPgk";
+
+        async function loadSheet(sheetName, targetId, processFunction = null) {
+            const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                const json = JSON.parse(text.substr(47).slice(0, -2));
+                const tableBody = document.getElementById(targetId);
+                tableBody.innerHTML = "";
+
+                let data = json.table.rows.map(row => row.c.map(cell => cell ? cell.v : ""));
+
+                if (processFunction) {
+                    data = processFunction(data);
+                }
+data.forEach((row, index) => {
+    const tr = document.createElement("tr");
+
+    // ⭐ HERVORHEBUNG FÜR DIE RANGLISTE
+    if (targetId === "ranking-content") {
+        if (index === 0 || index === 1) tr.classList.add("rank-top");
+        else if (index === 2 || index === 3) tr.classList.add("rank-good");
+    }
+
+    row.forEach(cell => {
+        const td = document.createElement("td");
+        td.textContent = cell;
+        tr.appendChild(td);
+    });
+
+    tableBody.appendChild(tr);
+});
+
+
+            } catch (error) {
+                console.error("Fehler beim Laden der Daten:", error);
+            }
+        }
+
+        function processGames(data) {
+            return data.filter(row => row[1] === "" || row[3] === "").map(row => [row[0], "vs", row[2]]);
+        }
+
+        function processFinishedGames(data) {
+    return data
+        .filter(row => row[1] !== "" && row[3] !== "") // Nur Spiele mit Ergebnissen
+        .map(row => [
+            row[0] || "",  
+            row[1] !== undefined && row[1] !== "" ? row[1] : "0", 
+            row[2] || "",  
+            row[3] !== undefined && row[3] !== "" ? row[3] : "0"  
+        ]);
+}
+
+
+           function sortRanking(data) {
+        let ranking = {};
+        data.forEach(row => {
+            const [team1, score1, team2, score2] = row;
+            if (!(team1 in ranking)) ranking[team1] = { team: team1, points: 0, games: 0, goals: 0, conceded: 0 };
+            if (!(team2 in ranking)) ranking[team2] = { team: team2, points: 0, games: 0, goals: 0, conceded: 0 };
+
+            if (score1 !== "" && score2 !== "") {
+                ranking[team1].games++;
+                ranking[team2].games++;
+                ranking[team1].goals += parseInt(score1, 10);
+                ranking[team2].goals += parseInt(score2, 10);
+                ranking[team1].conceded += parseInt(score2, 10);
+                ranking[team2].conceded += parseInt(score1, 10);
+                
+                // ✅ **Korrektur: 1 Punkt für einen Sieg**
+                if (parseInt(score1, 10) > parseInt(score2, 10)) ranking[team1].points += 1;
+                if (parseInt(score2, 10) > parseInt(score1, 10)) ranking[team2].points += 1;
+            }
+        });
+
+        return Object.values(ranking)
+            .sort((a, b) => 
+                b.points - a.points || 
+                (b.goals - b.conceded) - (a.goals - a.conceded) || 
+                b.goals - a.goals || 
+                a.team.localeCompare(b.team)
+            )
+            .map((team, index) => [index + 1, team.team, team.points, team.games, team.goals, team.conceded, team.goals - team.conceded]);
+    }
+
+
+        function loadAllData() {
+            loadSheet("News", "news-content");
+            loadSheet("Teams", "teams-content");
+            loadSheet("Spiele", "open-games-content", processGames);
+            loadSheet("Spiele", "finished-games-content", processFinishedGames);
+            loadSheet("Spiele", "ranking-content", sortRanking);
+        }
+
+        window.onload = function() {
+            loadAllData();
+            setInterval(loadAllData, 300000);
+        };
+    </script>
+
+    <script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    closeMenu(); // Schließt das Menü nach dem Klick auf Home
+}
+
+function toggleMenu() {
+    const menu = document.querySelector(".navbar-links");
+    menu.classList.toggle("show");
+}
+
+function closeMenu() {
+    document.querySelector(".navbar-links").classList.remove("show");
+}
+
+document.querySelector(".rules-link").addEventListener("click", function() {
+    closeMenu(); // Menü schließen nach Klick auf "Turnierregeln"
+});
+
+
+</script>
+
+    <script>
+        // 🕒 COUNTDOWN BIS ZUM ENDE DER VORRUNDE (nur Tage)
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const groupStageEnd = new Date("2025-06-06T23:59:59").getTime(); // Vorrunde-Ende
+
+            const distance = groupStageEnd - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "Die Vorrunde ist beendet!";
+                return;
+            }
+
+            const days = Math.ceil(distance / (1000 * 60 * 60 * 24)); // Aufrunden auf volle Tage
+
+            document.getElementById("countdown").innerHTML = `Vorrunde endet in ${days} Tagen`;
+        }
+
+        // 📊 FORTSCHRITTSANZEIGE: GESPIELTE SPIELE LADEN
+        async function updateProgress() {
+            const sheetId = "1qUf-YbZCdAwf5aHhdMRa2yrrqn1WRTNeZhDOwTYTPgk";
+            const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Spiele`;
+
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                const json = JSON.parse(text.substr(47).slice(0, -2));
+                const data = json.table.rows.map(row => row.c.map(cell => cell ? cell.v : ""));
+
+                const totalGames = 153; // Gesamtzahl der Vorrundenspiele
+                const playedGames = data.filter(row => row[1] !== "" && row[3] !== "").length; // Spiele mit Ergebnissen
+
+                const progressPercentage = (playedGames / totalGames) * 100;
+
+                document.getElementById("progress-fill").style.width = `${progressPercentage}%`;
+                document.getElementById("progress-text").innerText = `${playedGames} von ${totalGames} Spielen gespielt`;
+
+            } catch (error) {
+                console.error("Fehler beim Laden der gespielten Spiele:", error);
+            }
+        }
+
+  window.onload = function () {
+    // Lädt ALLE Daten vom Google Sheet
+    loadAllData();
+    setInterval(loadAllData, 300000); // Alle 5 Minuten aktualisieren
+
+    // Countdown-Funktion laden & aktualisieren
+    updateCountdown();
+    setInterval(updateCountdown, 60000); // Countdown jede Minute aktualisieren
+
+    // Fortschrittsbalken für gespielte Spiele laden & aktualisieren
+    updateProgress();
+    setInterval(updateProgress, 60000); // Fortschritt jede Minute aktualisieren
+};
+
+    </script>
+
+</body>
+</html>
