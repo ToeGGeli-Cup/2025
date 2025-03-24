@@ -362,7 +362,9 @@ tr.rank-good td {
   <div class="section-container">
 
         <!-- 🔍 Filterfeld für offene Spiele -->
-    <input type="text" id="open-games-filter" placeholder="Suche nach Teamname..." onkeyup="filterOpenGames()" />
+   <select id="open-games-filter" onchange="filterOpenGamesDropdown()">
+  <option value="">Alle Teams</option>
+</select>
     <div class="table-container">
       <table>
         <thead>
@@ -380,7 +382,10 @@ tr.rank-good td {
  
 
     <!-- 🔍 Filterfeld -->
-    <input type="text" id="result-filter" placeholder="Suche nach Teamname..." onkeyup="filterResults()" />
+  <!-- 🔍 Dropdown-Filterfeld -->
+<select id="result-filter" onchange="filterResultsDropdown()">
+  <option value="">Alle Teams</option>
+</select>
 
     <div class="table-container">
       <table>
@@ -503,10 +508,7 @@ data.forEach((row, index) => {
             loadSheet("Spiele", "ranking-content", sortRanking);
         }
 
-        window.onload = function() {
-            loadAllData();
-            setInterval(loadAllData, 300000);
-        };
+  
     </script>
 
     <script>
@@ -608,23 +610,17 @@ document.querySelector(".rules-link").addEventListener("click", function() {
       
     // 👉 Standard-Tab: Resultate
     showTab('finished-games');
+      populateTeamDropdown();
 };
-    function showTab(tabName) {
-    // Tab-Inhalte ausblenden
+ 
+function showTab(tabName) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
-
-    // Buttons deaktivieren
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-
-    // Aktives Tab und Button anzeigen
     document.getElementById(`${tabName}-tab`).style.display = 'block';
     document.querySelector(`.tab-button[onclick*="${tabName}"]`).classList.add('active');
 }
-
-// 🔍 Filterfunktion für Resultate
-function filterResults() {
-    const input = document.getElementById("result-filter");
-    const filter = input.value.toLowerCase();
+function filterResultsDropdown() {
+    const selectedTeam = document.getElementById("result-filter").value.toLowerCase();
     const rows = document.getElementById("finished-games-content").getElementsByTagName("tr");
 
     for (let row of rows) {
@@ -632,16 +628,17 @@ function filterResults() {
         const team1 = cells[0]?.textContent.toLowerCase();
         const team2 = cells[2]?.textContent.toLowerCase();
 
-        if (team1.includes(filter) || team2.includes(filter)) {
+        if (selectedTeam === "" || team1.includes(selectedTeam) || team2.includes(selectedTeam)) {
             row.style.display = "";
         } else {
             row.style.display = "none";
         }
     }
 }
-function filterOpenGames() {
-    const input = document.getElementById("open-games-filter");
-    const filter = input.value.toLowerCase();
+
+// 🔍 Filterfunktion für Dropdown (Offene Spiele)
+function filterOpenGamesDropdown() {
+    const selectedTeam = document.getElementById("open-games-filter").value.toLowerCase();
     const rows = document.getElementById("open-games-content").getElementsByTagName("tr");
 
     for (let row of rows) {
@@ -649,7 +646,7 @@ function filterOpenGames() {
         const team1 = cells[0]?.textContent.toLowerCase();
         const team2 = cells[2]?.textContent.toLowerCase();
 
-        if (team1.includes(filter) || team2.includes(filter)) {
+        if (selectedTeam === "" || team1.includes(selectedTeam) || team2.includes(selectedTeam)) {
             row.style.display = "";
         } else {
             row.style.display = "none";
@@ -657,7 +654,52 @@ function filterOpenGames() {
     }
 }
 
-    </script>
+// auch für das zweite Dropdown befüllen
+const resultDropdown = document.getElementById("result-filter");
+
+uniqueTeams.forEach(team => {
+    const option1 = document.createElement("option");
+    option1.value = team;
+    option1.textContent = team;
+    dropdown.appendChild(option1); // Offene Spiele
+
+    const option2 = document.createElement("option");
+    option2.value = team;
+    option2.textContent = team;
+    resultDropdown.appendChild(option2); // Resultate
+});
+async function populateTeamDropdown() {
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Teams`;
+    try {
+        const response = await fetch(url);
+        const text = await response.text();
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+        const data = json.table.rows.map(row => row.c[0]?.v).filter(Boolean);
+
+        const uniqueTeams = [...new Set(data)].sort();
+
+        const openGamesDropdown = document.getElementById("open-games-filter");
+        const resultDropdown = document.getElementById("result-filter");
+
+        uniqueTeams.forEach(team => {
+            const option1 = document.createElement("option");
+            option1.value = team;
+            option1.textContent = team;
+            openGamesDropdown.appendChild(option1); // für offene Spiele
+
+            const option2 = document.createElement("option");
+            option2.value = team;
+            option2.textContent = team;
+            resultDropdown.appendChild(option2); // für Resultate
+        });
+
+    } catch (error) {
+        console.error("Fehler beim Laden der Teams für Dropdown:", error);
+    }
+}
+
+</script>
+
 
 </body>
 </html>
