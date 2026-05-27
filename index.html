@@ -50,22 +50,30 @@
         }
 
         .tournament-logo {
-            display: flex;
-            justify-content: center;
-            margin: 20px auto;
-            padding: 15px;
-            background-color: #ffffff;
-            border-radius: 20px; /* Abgerundete Ecken */
-            width: 400px; /* Breite des Rahmens */
-            height: auto; /* Automatische Höhe */
-        }
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 420px; /* PC-Grösse */
+    max-width: 90%; /* verhindert Abschneiden */
+    height: auto;
+}
 
-        .tournament-logo img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px; /* Leicht abgerundete Ecken für das Bild */
-        }
+.tournament-logo img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
 
+/* Mobile Ansicht */
+@media screen and (max-width: 768px) {
+    .tournament-logo {
+        width: 240px;
+        padding: 12px;
+    }
+}
         
         .container {
             width: 100%;
